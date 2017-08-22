@@ -1,0 +1,70 @@
+<div layout="column" layout-fill>
+  <md-toolbar color="primary" class="md-whiteframe-z1">
+    <span>Login</span>
+  </md-toolbar>
+  <div class="md-content" layout-padding flex>
+    <div layout-gt-xs="row" layout-align-gt-xs="center start" class="margin">
+      <div flex-gt-xs="50">
+        <md-card tdMediaToggle="gt-xs" [mediaClasses]="['push-top-lg']">
+          <md-card-title>
+            <div class="text-center">
+              <img src="assets/img/hld80.png" class="img-avatar">
+            </div>
+          </md-card-title>
+          <md-card-subtitle>
+            <h6 class="text-center">Demo</h6>
+          </md-card-subtitle>
+          <md-divider></md-divider>
+          <md-card-content>
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" #loginForm="ngForm">
+              <div layout="row">
+                <md-input-container flex>
+                  <input mdInput [formControl]="username" placeholder="Username" type="text" maxlength="30" name="username">
+                  <span md-prefix><md-icon>person</md-icon></span>
+                  <md-hint align="start">
+                    <span [hidden]="!username.errors?.required || username.pristine" class="tc-red-600">Required</span>
+                  </md-hint>
+                  <md-hint align="end">{{username.value.length}} / 30</md-hint>
+                  <md-error *ngIf="username.hasError('minlength')">
+                    最少長度
+                  </md-error>
+                  <md-error *ngIf="username.hasError('required')">
+                    請輸入網絡ID
+                  </md-error>
+                </md-input-container>
+              </div>
+              <div layout="row">
+                <md-input-container flex>
+                  <input [formControl]="password" mdInput placeholder="Password" type="password" name="password">
+                  <span md-prefix><md-icon>lock</md-icon></span>
+                  <md-hint align="start">
+                    <span [hidden]="!password.errors?.required || password.pristine" class="tc-red-600">Required</span>
+                  </md-hint>
+                  <md-error *ngIf="password.hasError('minlength')">
+                    最少長度
+                  </md-error>
+                  <md-error *ngIf="password.hasError('required')">
+                    請輸入密碼
+                  </md-error>
+                </md-input-container>
+              </div>
+              <div layout="row">
+                <md-select style="width:100%" [formControl]="domain" name="name">
+                  <md-option *ngFor="let domain of domains" [value]="domain.value">
+                    {{domain.name}}
+                  </md-option>
+                </md-select>
+              </div>
+              <div layout="row">
+                <button style="width:100%" color="primary" [disabled]="!form.valid" type="submit" md-raised-button>登入</button>
+                <md-error *ngIf="hasError">
+                  {{errorMsg}}
+                </md-error>
+              </div>
+            </form>
+          </md-card-content>
+        </md-card>
+      </div>
+    </div>
+  </div>
+</div>

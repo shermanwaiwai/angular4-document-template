@@ -1,0 +1,61 @@
+<td-layout-nav>
+  <div td-toolbar-content layout="row" layout-align="center center" flex>
+    <span>SubSystem</span>
+    <span flex></span>
+    <button md-button [mdMenuTriggerFor]="personMenu"><md-icon class="mat-icon material-icons" role="img" aria-hidden="true">person</md-icon></button>
+  </div>
+  <td-layout-manage-list #manageList [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+    [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '257px' : '100%'">
+    <md-toolbar td-sidenav-content>
+      <span>系統: </span>
+      <span flex></span>
+      <md-select [(ngModel)]="selectedSubSystem">
+        <md-option value="ACL">ACL</md-option>
+        <md-option value="SALESHANDOVER">HANDOVER</md-option>
+        <md-option value="LBMS">LBMS</md-option>
+      </md-select>
+    </md-toolbar>
+    <md-nav-list td-sidenav-content>
+      <a md-list-item md-ripple class="block relative" (click)="!media.query('gt-sm') && manageList.close()" [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact:true}" [routerLink]="['dashboard']">
+        <md-icon md-list-icon>dashboard</md-icon>
+        Dashboard
+      </a>
+      <a md-list-item md-ripple class="block relative" (click)="!media.query('gt-sm') && manageList.close()" [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact:true}" [routerLink]="['stats']">
+        <md-icon md-list-icon>insert_chart</md-icon>
+        Stats
+      </a>
+      <!-- <a md-list-item md-ripple class="block relative" (click)="!media.query('gt-sm') && manageList.close()" [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact:true}" [routerLink]="['features']">
+        <md-icon md-list-icon>star</md-icon>
+        Features
+      </a>  -->
+      <a md-list-item (click)="!media.query('gt-sm') && manageList.close()" md-ripple class="block relative">
+        <md-icon md-list-icon>people</md-icon>
+        Users
+      </a>
+      <a md-list-item (click)="!media.query('gt-sm') && manageList.close()" md-ripple class="block relative">
+        <md-icon md-list-icon>receipt</md-icon>
+        Log
+      </a>
+      <a md-list-item (click)="!media.query('gt-sm') && manageList.close()" md-ripple class="block relative">
+        <md-icon md-list-icon>settings</md-icon>
+        Settings
+      </a>
+    </md-nav-list>
+    <div td-toolbar-content layout="row" layout-align="start center" flex>
+      <span>{{title}}</span>
+      <span flex></span>
+      <button md-icon-button><md-icon class="md-24">view_module</md-icon></button>
+      <button md-icon-button><md-icon class="md-24">sort</md-icon></button>
+      <button md-icon-button><md-icon class="md-24">settings</md-icon></button>
+      <button md-icon-button><md-icon class="md-24">more_vert</md-icon></button>
+    </div>
+    <router-outlet></router-outlet>
+  </td-layout-manage-list>
+</td-layout-nav>
+
+<md-menu #personMenu="mdMenu">
+  <button md-menu-item [routerLink]="['/login']"><md-icon class="mat-icon material-icons" role="img" aria-hidden="true">exit_to_app</md-icon>Sign Out </button>
+</md-menu>

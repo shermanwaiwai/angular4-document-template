@@ -1,0 +1,41 @@
+[{
+  "item_id": "1",
+  "name": "SubSystem A",
+  "description": "description A",
+  "icon": "account_balance",
+  "color": "pink-A200",
+  "count": 5000,
+  "category": "analytics"
+}, {
+  "item_id": "2",
+  "name": "SubSystem B",
+  "description": "description B",
+  "icon": "account_balance",
+  "color": "pink-A200",
+  "count": 4000,
+  "category": "analytics"
+}, {
+  "item_id": "3",
+  "name": "SubSystem C",
+  "description": "description C",
+  "icon": "account_balance",
+  "color": "pink-A200",
+  "count": 3000,
+  "category": "analytics"
+}, {
+  "item_id": "4",
+  "name": "SubSystem D",
+  "description": "description D",
+  "icon": "account_balance",
+  "color": "pink-A200",
+  "count": 2000,
+  "category": "analytics"
+}, {
+  "item_id": "5",
+  "name": "SubSystem E",
+  "description": "description E",
+  "icon": "account_balance",
+  "color": "pink-A200",
+  "count": 1000,
+  "category": "analytics"
+}]
