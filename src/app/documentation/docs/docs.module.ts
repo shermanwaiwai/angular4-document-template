@@ -1,3 +1,4 @@
+import { ToolbarModule } from '../toolbar/toolbar.module';
 import { DocumentationToolsModule } from '../../documentation-tools';
 import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentHighlightModule } from '@covalent/highlight';
@@ -74,7 +75,7 @@ const COVALENT_MODULES: any[] = [
     CovalentHighlightModule,
     CovalentMarkdownModule,
     docsRoutes,
-    // ToolbarModule,
+    ToolbarModule,
   ],
 })
 export class DocsModule {

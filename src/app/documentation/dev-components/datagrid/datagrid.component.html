@@ -1,0 +1,106 @@
+<md-card>
+  <md-card-title>Data Table</md-card-title>
+  <md-card-subtitle>Display sets of raw data</md-card-subtitle>
+  <md-divider></md-divider>
+  <md-card-content>
+    <h3 class="md-title">Custom Data Table</h3>
+    <h4 class="md-subhead">with custom headings, columns, and inline editing</h4>
+    <md-divider></md-divider>
+    <md-tab-group md-stretch-tabs>
+      <md-tab>
+        <ng-template md-tab-label>Demo</ng-template>
+          <div class="mat-table-container">
+          <table td-data-table>
+            <th td-data-table-column>
+              <md-icon>comment</md-icon>
+              <span>Comments</span>
+            </th>
+            <th td-data-table-column
+                *ngFor="let column of columns"
+                [numeric]="column.numeric">
+              {{column.label}}
+            </th>
+            <tr td-data-table-row *ngFor="let row of basicData">
+              <td td-data-table-cell (click)="openPrompt(row, 'comments')">
+                <button md-button [class.mat-accent]="!row['comments']">{{row['comments'] || 'Add Comment'}}</button>
+              </td>
+              <td td-data-table-cell *ngFor="let column of columns" [numeric]="column.numeric">
+                {{column.format ? column.format(row[column.name]) : row[column.name]}}
+              </td>
+            </tr>
+          </table>
+        </div>
+      </md-tab>
+      <md-tab>
+        <ng-template md-tab-label>Code</ng-template>
+        <p>HTML:</p>
+        <td-highlight lang="html">
+          <![CDATA[
+           <dx-data-grid #datagrid [dataSource]="dataSource" (onInitNewRow)="_onInitNewRow($event)" (onRowInserting)="_onRowInserting($event)"
+            (onRowInserted)="_onRowInserted($event)" (onRowUpdated)="_onRowUpdated($event)" (onRowRemoved)="_onRowRemoved($event)" (onEditorPreparing)="_onEditorPreparing($event)"
+            [allowColumnReordering]="true" [allowColumnResizing]="true" (onToolbarPreparing)="_onToolbarPreparing($event)" (onCellPrepared)="_onCellPrepared($event)"
+            [columnAutoWidth]="true" (onSelectionChanged)="_onSelectionChanged($event)">
+            <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+            <dxo-paging enabled="true" [pageSize]="pageSize"></dxo-paging>
+            <dxo-pager showPageSizeSelector="true" [allowedPageSizes]="[5, 10, 20]" showInfo="true" visible="true">
+            </dxo-pager>
+            <dxo-selection [mode]="selectionMode"></dxo-selection>
+            <dxo-editing [mode]="mode" [allowUpdating]="allowUpdating" [allowDeleting]="allowDeleting" [allowAdding]="allowAdding">
+            </dxo-editing>
+            <dxo-sorting mode="multiple"></dxo-sorting>
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-header-filter [visible]="true"></dxo-header-filter>
+            <dxo-search-panel [visible]="true" [width]="240" placeholder="搜索"></dxo-search-panel>
+            <dxo-load-panel [enabled]="true"></dxo-load-panel>
+            <dxo-export [enabled]="export" [fileName]="fileName"></dxo-export>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping [(autoExpandAll)]="autoExpandAll"></dxo-grouping>
+            <dxi-column *ngFor="let col of columns" [dataField]="col.dataField" [sortOrder]="col.sortOrder" [groupIndex]="col.groupIndex"
+              [width]="col.width" [dataType]="col.dataType" [caption]="col.caption" [alignment]="col.alignment">
+              <dxi-validation-rule *ngIf="col.rules" [type]="col.rules.type" [message]="col.rules.message">
+              </dxi-validation-rule>
+              {{col.loopUpSource || json}}
+              <dxo-lookup *ngIf="col.lookUpSourceID" [dataSource]="getLookUpDataSourceByID(col.lookUpSourceID)?.dataSource" [displayExpr]="getLookUpDataSourceByID(col.lookUpSourceID)?.displayExpr"
+                [valueExpr]="getLookUpDataSourceByID(col.lookUpSourceID)?.valueExpr">
+              </dxo-lookup>
+            </dxi-column>
+          </dx-data-grid>
+          ]]>
+        </td-highlight>
+        <p>Typescript:</p>
+        <td-highlight lang="typescript">
+          <![CDATA[
+            import { ITdDataTableColumn } from '@covalent/core';
+            import { TdDialogService } from '@covalent/core';
+            ...
+            })
+            export class Demo {
+              data: any[] = [
+                { sku: '1452-2', item: 'Pork Chops', price: 32.11 },
+                { sku: '1421-0', item: 'Prime Rib', price: 41.15 },
+              ];
+              columns: ITdDataTableColumn[] = [
+                { name: 'sku', label: 'SKU #', tooltip: 'Stock Keeping Unit' },
+                { name: 'item', label: 'Item name' },
+                { name: 'price', label: 'Price (US$)', numeric: true, format: v => v.toFixed(2) },
+              ];
+
+              constructor(private _dialogService: TdDialogService) {}
+
+              openPrompt(row: any, name: string): void {
+                this._dialogService.openPrompt({
+                  message: 'Enter comment?',
+                  value: row[name],
+                }).afterClosed().subscribe((value: any) => {
+                  if (value !== undefined) {
+                    row[name] = value;
+                  }
+                });
+              }
+            }
+          ]]>
+        </td-highlight>
+      </md-tab>
+    </md-tab-group>
+  </md-card-content>
+</md-card>

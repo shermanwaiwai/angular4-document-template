@@ -10,12 +10,6 @@ import {
 import { Component, OnInit, HostBinding } from '@angular/core';
 
 import { slideInDownAnimation } from '../../../../app.animations';
-// import {
-//   TdDataTableSortingOrder, TdDataTableService, TdDataTableComponent,
-//   ITdDataTableSortChangeEvent, ITdDataTableColumn
-// } from 
-// import { IPageChangeEvent } from '../../../../platform/core';
-// import { TdDialogService } from '../../../../platform/core';
 
 const NUMBER_FORMAT: (v: any) => any = (v: number) => v;
 const DECIMAL_FORMAT: (v: any) => any = (v: number) => v.toFixed(2);

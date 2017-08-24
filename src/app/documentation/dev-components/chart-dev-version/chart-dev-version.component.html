@@ -1,0 +1,105 @@
+<md-card>
+  <md-card-title>Devextreme Chart</md-card-title>
+  <md-divider></md-divider>
+  <md-card-content>
+    <md-tab-group md-stretch-tabs>
+      <md-tab>
+        <ng-template md-tab-label>Demo</ng-template>
+        <div class="mat-table-container">
+          <dx-chart id="chart" title="World Population by Decade" [dataSource]="populationData">
+            <dxo-legend [visible]="false"></dxo-legend>
+            <dxi-series type="bar"></dxi-series>
+            <dxo-argument-axis [tickInterval]="10"></dxo-argument-axis>
+            <dxi-value-axis>
+              <dxo-label>
+                <dxo-format type="millions"></dxo-format>
+              </dxo-label>
+            </dxi-value-axis>
+          </dx-chart>
+        </div>
+      </md-tab>
+      <md-tab>
+        <ng-template md-tab-label>Code</ng-template>
+        <p>HTML:</p>
+        <td-highlight lang="html">
+          <![CDATA[
+           <dx-chart id="chart"
+                title="World Population by Decade"
+                [dataSource]="populationData">
+                <dxo-legend [visible]="false"></dxo-legend>
+                <dxi-series type="bar"></dxi-series>
+                <dxo-argument-axis [tickInterval]="10"></dxo-argument-axis>
+                <dxi-value-axis>
+                <dxo-label>
+                <dxo-format type="millions"></dxo-format>
+                </dxo-label>
+                </dxi-value-axis>
+            </dx-chart>
+          ]]>
+        </td-highlight>
+        <p>component.ts:</p>
+        <td-highlight lang="typescript">
+          <![CDATA[
+                @Component({
+                    selector: 'demo-app',
+                    templateUrl: 'app/app.component.html',
+                    styleUrls: ['app/app.component.css'],
+                    providers: [Service]
+                })
+                export class AppComponent {
+                    populationData: Population[];
+
+                    constructor(service: Service) {
+                        this.populationData = service.getPopulationData();
+                    }
+                }
+          ]]>
+        </td-highlight>
+        <p>service.ts:</p>
+        <td-highlight lang="typescript">
+          <![CDATA[
+               import { Injectable } from '@angular/core';
+                export class Population {
+                    arg: number;
+                    val: number;
+                }
+
+                let populationData: Population[] = [{
+                    arg: 1950,
+                    val: 2525778669
+                }, {
+                    arg: 1960,
+                    val: 3026002942
+                }, {
+                    arg: 1970,
+                    val: 3691172616
+                }, {
+                    arg: 1980,
+                    val: 4449048798
+                }, {
+                    arg: 1990,
+                    val: 5320816667
+                }, {
+                    arg: 2000,
+                    val: 6127700428
+                }, {
+                    arg: 2010,
+                    val: 6916183482
+                }];
+
+                @Injectable()
+                export class Service {
+                    getPopulationData(): Population[] {
+                        return populationData;
+                    }
+                }
+                ]]>
+        </td-highlight>
+      </md-tab>
+    </md-tab-group>
+  </md-card-content>
+  <md-card-actions>
+    <a md-button class='bgc-blue-A300' href="https://js.devexpress.com/Demos/WidgetsGallery/Demo/Charts/SimpleArray/Angular/Light/"
+      target="_blank">Visit Devextreme Website For more example</a>
+  </md-card-actions>
+</md-card>

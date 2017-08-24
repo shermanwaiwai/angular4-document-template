@@ -15,17 +15,9 @@
     </ng-template>
   </md-nav-list>
   <div td-toolbar-content layout="row" layout-align="start center" flex>
-    <span></span>
     <span flex></span>
-    <a md-button mdTooltip="Dashboard" [routerLink]="['/dashboard']">
-    Dashboard
-    </a>
-    <a md-button mdTooltip="Documents" [routerLink]="['/docs/overview']">
-      Documents
-    </a>
-    <a md-button mdTooltip="Components" [routerLink]="['/components/overview']">
-      Components
-    </a>
+    <td-toolbar>
+    </td-toolbar>
   </div>
   <router-outlet></router-outlet>
 </td-layout-nav-list>

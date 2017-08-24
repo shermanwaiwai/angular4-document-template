@@ -1,3 +1,5 @@
+import { StyleGuideModule } from '../documentation/style-guide';
+import { DevComponentModule } from '../documentation/dev-components';
 import { DocsModule } from '../documentation/docs';
 import { ComponentsModule } from '../documentation/components';
 import { NgModule, } from '@angular/core';
@@ -56,6 +58,8 @@ const CHART_MODULES: any[] = [
     FLEX_LAYOUT_MODULES,
     DocsModule,
     ComponentsModule,
+    StyleGuideModule,
+    DevComponentModule,
   ],
   declarations: [
 

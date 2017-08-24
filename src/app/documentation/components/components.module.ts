@@ -1,3 +1,4 @@
+import { ToolbarModule } from '../toolbar/toolbar.module';
 import { CovalentDynamicFormsModule } from '@covalent/dynamic-forms';
 import { CovalentMarkdownModule } from '@covalent/markdown';
 import { CovalentHighlightModule } from '@covalent/highlight';
@@ -141,10 +142,10 @@ import { CovalentTextEditorModule } from '@covalent/text-editor';
     NgxChartsModule,
     TranslateModule,
     componentsRoutes,
-    // ToolbarModule,
+    ToolbarModule,
   ],
 })
-export class ComponentsModule { 
+export class ComponentsModule {
 
 }
 

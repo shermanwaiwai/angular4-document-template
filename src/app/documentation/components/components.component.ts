@@ -1,5 +1,5 @@
 import { fadeAnimation } from '../../../app.animations';
-import { Component, HostBinding, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, HostBinding, OnInit } from '@angular/core';
 
 import { TdMediaService } from '@covalent/core';
 
@@ -9,7 +9,7 @@ import { TdMediaService } from '@covalent/core';
   templateUrl: './components.component.html',
   animations: [fadeAnimation],
 })
-export class ComponentsComponent implements AfterViewInit {
+export class ComponentsComponent implements AfterViewInit, OnInit {
 
   @HostBinding('@routeAnimation') routeAnimation: boolean = true;
   @HostBinding('class.td-route-animation') classAnimation: boolean = true;
@@ -163,4 +163,7 @@ export class ComponentsComponent implements AfterViewInit {
 
   }
 
+  public ngOnInit(): void {
+
+  }
 }

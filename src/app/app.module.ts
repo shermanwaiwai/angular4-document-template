@@ -1,4 +1,6 @@
 
+import { RouterModule } from '@angular/router';
+
 import { TrafficService } from '../services/traffic.service';
 import { NgModule, Type } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
@@ -11,13 +13,10 @@ import { CovalentMarkdownModule } from '@covalent/markdown';
 import { AppComponent } from './app.component';
 import { RequestInterceptor } from '../config/interceptors/request.interceptor';
 import { MOCK_API } from '../config/api.config';
-
-import { routedComponents, AppRoutingModule } from './app-routing.module';
-
+import { routedComponents, routes } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
-
-import { USER_PROVIDER, USERS_API } from './users';
-
+import { USERS_API, USER_PROVIDER } from './dashboard/users/users.module';
+// import { USER_PROVIDER, USERS_API } from './users';
 const httpInterceptorProviders: Type<any>[] = [
   RequestInterceptor,
 ];
@@ -32,7 +31,7 @@ export function getAPI(): string {
     routedComponents,
   ], // directives, components, and pipes owned by this NgModule
   imports: [
-    AppRoutingModule,
+    // AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
@@ -43,6 +42,7 @@ export function getAPI(): string {
     }),
     CovalentHighlightModule,
     CovalentMarkdownModule,
+    RouterModule.forRoot(routes, { useHash: true }),
   ], // modules needed to run this module
   providers: [
     httpInterceptorProviders,
@@ -56,3 +56,4 @@ export function getAPI(): string {
   bootstrap: [AppComponent],
 })
 export class AppModule { }
+
