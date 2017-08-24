@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'qs-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss'],
+  templateUrl: './navigation.component.html',
+  styleUrls: ['./navigation.component.scss'],
 })
-export class MainComponent {
+export class NavigationComponent {
 
   routes: Object[] = [{
     title: 'Dashboard',
@@ -14,7 +14,7 @@ export class MainComponent {
     icon: 'dashboard',
   }, {
     title: 'SubSystem Dashboard',
-    route: '/subsystem',
+    route: '/subsystem/dashboard',
     icon: 'view_quilt',
   },
     // {

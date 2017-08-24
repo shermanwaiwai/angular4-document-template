@@ -1,3 +1,6 @@
+// import { DocumentationComponent } from './documentation/documentation.component';
+import { ThemeComponent } from './theme/theme.component';
+import { NavigationComponent } from './theme/navigation/navigation.component';
 import { FeaturesFormComponent } from './dashboard-subSystem/features/form/form.component';
 import { SubSystemFeaturesComponent } from './dashboard-subSystem/features/features.component';
 
@@ -7,8 +10,6 @@ import { SubSystemOverviewComponent } from './dashboard-subSystem/overview/overv
 import { DashboardSubSystemComponent } from './dashboard-subSystem/dashboard-subsystem.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-import { MainComponent } from './main/main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogsComponent } from './logs/logs.component';
 import { DetailComponent } from './detail/detail.component';
@@ -22,8 +23,16 @@ const routes: Routes = [
         component: LoginComponent,
     },
     {
+        // preload: true loads the module immediately
+        path: 'docs', data: { preload: true, }, loadChildren: './documentation/docs/docs.module#DocsModule',
+    },
+    {
+        // preload: true loads the module immediately
+        path: 'components', data: { preload: true, }, loadChildren: './documentation/components/components.module#ComponentsModule',
+    },
+    {
         path: '',
-        component: MainComponent,
+        component: NavigationComponent,
         children: [
             {
                 component: DashboardComponent,
@@ -79,6 +88,16 @@ const routes: Routes = [
             { path: '', loadChildren: './users/users.module#UsersModule' },
         ],
     },
+    // {
+    //     path: 'doc',
+    //     component: ThemeComponent,
+    //     children: [
+    //         {
+    //             component: DocumentationComponent,
+    //             path: 'main',
+    //         },
+    //     ],
+    // },
 ];
 
 @NgModule({
@@ -92,8 +111,17 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 export const routedComponents: any[] = [
-    MainComponent, LoginComponent,
-    DashboardComponent, DashboardSubSystemComponent,
-    FormComponent, LogsComponent, DetailComponent,
-    FeaturesFormComponent, SubSystemFeaturesComponent, SubSystemOverviewComponent, SubSystemStatsComponent,
+    NavigationComponent,
+    LoginComponent,
+    ThemeComponent,
+    DashboardComponent,
+    DashboardSubSystemComponent,
+    FormComponent,
+    LogsComponent,
+    DetailComponent,
+    FeaturesFormComponent,
+    SubSystemFeaturesComponent,
+    SubSystemOverviewComponent,
+    SubSystemStatsComponent,
+    // DocumentationComponent,
 ];

@@ -1,3 +1,5 @@
+import { DocsModule } from '../documentation/docs';
+import { ComponentsModule } from '../documentation/components';
 import { NgModule, } from '@angular/core';
 import { CommonModule, } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
@@ -52,6 +54,8 @@ const CHART_MODULES: any[] = [
     COVALENT_MODULES,
     CHART_MODULES,
     FLEX_LAYOUT_MODULES,
+    DocsModule,
+    ComponentsModule,
   ],
   declarations: [
 
@@ -62,6 +66,8 @@ const CHART_MODULES: any[] = [
     COVALENT_MODULES,
     CHART_MODULES,
     FLEX_LAYOUT_MODULES,
-  ]
+  ],
 })
-export class SharedModule { }
+export class SharedModule {
+
+}

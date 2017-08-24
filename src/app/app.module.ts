@@ -1,3 +1,4 @@
+
 import { TrafficService } from '../services/traffic.service';
 import { NgModule, Type } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';

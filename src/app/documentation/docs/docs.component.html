@@ -1,0 +1,31 @@
+<td-layout-nav-list #manageList [opened]="media.registerQuery('gt-sm') | async" [mode]="(media.registerQuery('gt-sm') | async) ? 'side' : 'push'"
+  [sidenavWidth]="(media.registerQuery('gt-xs') | async) ? '320px' : '100%'">
+  <div td-sidenav-toolbar-content layout="row" layout-align="start center">
+    <span [routerLink]="['/docs/overview']" class="cursor-pointer">Documents</span>
+  </div>
+  <md-nav-list td-sidenav-content>
+    <ng-template let-item let-last="last" ngFor [ngForOf]="items">
+      <a md-list-item md-ripple class="block relative" [routerLink]="[item.route]" (click)="!media.query('gt-sm')" [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact:true}">
+        <md-icon md-list-avatar>{{item.icon}}</md-icon>
+        <h3 md-line> {{item.title}} </h3>
+        <p md-line> {{item.description}} </p>
+      </a>
+      <md-divider *ngIf="!last" md-inset></md-divider>
+    </ng-template>
+  </md-nav-list>
+  <div td-toolbar-content layout="row" layout-align="start center" flex>
+    <span></span>
+    <span flex></span>
+    <a md-button mdTooltip="Dashboard" [routerLink]="['/dashboard']">
+    Dashboard
+    </a>
+    <a md-button mdTooltip="Documents" [routerLink]="['/docs/overview']">
+      Documents
+    </a>
+    <a md-button mdTooltip="Components" [routerLink]="['/components/overview']">
+      Components
+    </a>
+  </div>
+  <router-outlet></router-outlet>
+</td-layout-nav-list>
